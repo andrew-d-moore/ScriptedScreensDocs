@@ -74,11 +74,11 @@ function tick(dt)
     accum = 0
 
     -- Read real sensor data if available, otherwise simulate
-    local temp = read(0, LT.Temperature)
+    local temp = ic.read(0, LT.Temperature)
     if temp then temp = temp - 273.15 else temp = 22 + math.sin(os.clock()) * 3 end
 
-    local press = read(0, LT.Pressure) or (101.3 + math.cos(os.clock() * 0.7) * 5)
-    local o2 = read(0, LT.RatioOxygen) or (0.21 + math.sin(os.clock() * 0.3) * 0.02)
+    local press = ic.read(0, LT.Pressure) or (101.3 + math.cos(os.clock() * 0.7) * 5)
+    local o2 = ic.read(0, LT.RatioOxygen) or (0.21 + math.sin(os.clock() * 0.3) * 0.02)
 
     -- Update gauges
     tempGauge:set_props({ value = string.format("%.1f", temp) })
